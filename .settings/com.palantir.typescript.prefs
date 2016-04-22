@@ -1,0 +1,5 @@
+build.path.exportedFolder=
+build.path.sourceFolder=src/main/webapp/resources/typescript
+compiler.outputDirOption=src/main/webapp/resources/html/js
+compiler.outputFileOption=
+eclipse.preferences.version=1

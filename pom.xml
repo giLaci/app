@@ -1,28 +1,42 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-
-  <groupId>laci</groupId>
-  <artifactId>music</artifactId>
-  <packaging>war</packaging>
-
-  <name>application</name>
-  <url>http://maven.apache.org</url>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
-  <version>1.0</version>
-  <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <webXml>WebContent\WEB-INF\web.xml</webXml>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>laci</groupId>
+	<artifactId>music</artifactId>
+	<version>1</version>
+	<packaging>war</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<!-- <webResources> <resource> <directory>config</directory> <targetPath>/</targetPath> 
+						<filtering>true</filtering> </resource> </webResources> -->
+					<warSourceExcludes>resources/html/js/kendoUI/src/**,resources/html/js/reports/**,resources/html/js/reportsFull/**,resources/typescript/reports/**,resources/typescript/reportsFull/**</warSourceExcludes>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>music</finalName>
+	</build>
+	<name>music</name>
+	<dependencies>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+	      <groupId>javax.servlet</groupId>
+	      <artifactId>javax.servlet-api</artifactId>
+	      <version>3.1-b06</version>
+	      <scope>compile</scope>
+	    </dependency>
+	</dependencies>
 </project>
