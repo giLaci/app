@@ -1,0 +1,106 @@
+body{
+    margin: 0;
+    background-color: black;
+    color: white;
+    font-family: Arial;
+    font-size: 24px;
+}
+#header{
+    background-color: rgb(6, 171, 171);
+    height: 75px;
+    width: 100%;
+    position: fixed;
+}
+.headerTab{
+    width: 100%;
+    float: left;
+    text-align: center;
+    background-color: grey;
+    color: #dddddd;
+    height: 100%;
+}
+.headerTab.selected{
+    background-color: rgb(6, 171, 171);
+    color: white;
+}
+/* confirm dialog */
+#confirmOverlay{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index:100000;
+}
+
+#confirmBox{
+    background-color: white;
+    position:fixed;
+    width: 100%;
+    top:75px;
+    border-radius: 3px;
+}
+
+#confirmBox h1{
+    color:black;
+    font-size:18px;
+    font-weight: normal;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #eeeeee;
+}
+
+#confirmBox p{
+    background: none;
+    font-size: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: black;
+}
+
+#confirmButtons{
+    padding:15px 0 25px;
+    text-align: right;
+}
+
+#confirmBox .button, #addYoutube{
+    color: #686868;
+    background-color: #e3e6e3;
+    padding: 10px;
+    margin-right: 20px;
+    border-radius: 2px;
+    border: solid 1px #c6d0c6;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-decoration: blink;
+}
+#addYoutube{
+	margin: 10px;
+	margin-top: 0;
+}
+#confirmBox .button:hover, #confirmBox .button:focus{
+    background-color: #cdd5cd;
+    border: solid 1px #b8c5b8;
+}
+#confirmBox .button[disabled],
+#confirmBox .button[disabled]:hover{
+    opacity: 0.5;
+    background-color: #e3e6e3;
+}
+#confirmBox input{
+	font-size: 24;
+	border: 2px solid orange;
+	width: 100%;
+}
+#downloadNow{
+	height: 30px !important;
+    width: 30px !important;
+    vertical-align: middle;
+}
+#youtubeIcon{
+    width: 66%;
+    margin: 2px;
+}

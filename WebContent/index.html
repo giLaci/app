@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel='stylesheet' href='css/common.css' />
+	    <link rel='stylesheet' media='all and (max-width: 550px)' href='css/small-screen.css' />
+	    <link rel='stylesheet' media='all and (min-width: 551px)' href='css/big-screen.css' />
+        
+        <!-- include before all javascript -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/plugins/jquery.confirm.js"></script>
+		
+	    <script type="text/javascript" src="js/controller.js"/]"></script>
+	    
+		<title>MyMusicBox</title>
+	</head>
+	<body>
+	    <div id="progressIcon" style="display: hidden"></div>
+        <div id="header">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+	            <tr>
+		            <td width="40%">
+			            <div class="headerTab selected">
+			                <div id="tabLocal" ontouchstart='return true' style="border-right: solid 1px lightgrey;">Zenék</div>
+			            </div> 
+			        </td>
+			        <td width="40%">
+			            <div class="headerTab">
+			                <div id="tabRadio" ontouchstart='return true' style="border-right: solid 1px lightgrey;"/>Rádió</div>  
+			            </div> 
+			        </td>
+		            <td width="20%">
+			            <div class="headerTab" id="youtubeIconTab" style="background-color: white;">
+			                <img  id="youtubeIcon" src="images/youtubeIcon.png" ontouchstart='return true' />
+			            </div> 
+			        </td>
+	            </tr>
+            </table>
+        </div>
+        <div id="current">
+            <div id="currentSongTtitle"></div>
+            <!--  <div id="seeker">
+                <div id="seekButton"></div>
+            </div>-->
+            <div id="songController" style="display:none">
+                <img id="controllJumpLeft" src="images/jumpLeft.png" ontouchstart='return true'/>
+                <img id="controllSeekLeft" src="images/seek-left.png" ontouchstart='return true'/>
+                <img id="controllStop" src="images/stop.png" ontouchstart='return true'/>
+                <img id="controllPlayPause" src="images/play.png" ontouchstart='return true' />
+                <img id="controllVolumeUp" src="images/volumeUp.png" ontouchstart='return true'/>
+                <img id="controllVolumeDown" src="images/volumeDown.png" ontouchstart='return true'/>
+                <img id="controllSeekRight" src="images/seek-right.png" ontouchstart='return true'/>
+                <img id="controllJumpRight" src="images/jumpRight.png" ontouchstart='return true'/>
+            </div>
+        </div>
+        <div id="content">
+	        <div id="tabLocalContent">
+	            <div id="localTableContainer">
+	                <table id="localTable" border="0">
+	                    <tbody>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	        <div id="tabRadioContent" style="display: none">
+	            <div id="radioTableContainer">
+	                <table id="radioTable" border="0">
+	                    <tbody>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+        </div>
+    </body>
+</html>
