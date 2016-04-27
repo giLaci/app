@@ -1,4 +1,4 @@
-package com.mymusic;
+package com.laci;
 
 public class IdleThread extends Thread
 {
