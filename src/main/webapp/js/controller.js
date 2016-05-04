@@ -1,10 +1,17 @@
 $(document).ready(function(){
 	documentBaseUrl = "http://" + document.location.host + document.location.pathname;
+
+	// laod radio channels
+	controller.loadRadioChanels(documentBaseUrl);
+	
 	controller.getCurrent();
 	
 	// get root files
 	controller.getFiles("");
 	controller.getStations();
+	
+	controller.radioChanels = [];
+	
 	
 	$("#tabLocal").click(function(){
 		$("#tabLocal").parent().addClass("selected");
@@ -255,17 +262,7 @@ controller = {
         }
     },
     getStations: function(){
-    	var list = [
-    	            {"file":"http://stream.radio88.hu:8000", "name": "Rádio 88"},
-    	            {"file":"http://stream001.radio.hu:8080/mr1.mp3", "name":"Kossuth rádió"},
-    	            {"file":"http://194.38.105.21:8002/", "name":"Jazz rádió"},
-    	            {"file":"http://stream2.radio88.hu:8400/", "name":"Rádió88 Club 88"},
-    	            {"file":"http://listen.trance.fm/1/192", "name":"trance.fm: [UK1] Trance Channe"},
-    	            {"file":"http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p", "name":"BBC radio 1"},
-    	            {"file":"http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p", "name":"BBC radio 2"},
-    	            
-    	            ];
-    	controller.updateTable($("#radioTable"),list,"","stream")
+    	controller.updateTable($("#radioTable"),controller.radioChanels,"","stream")
     },
     getFileName: function(filename){
 		var array = filename.split("/");
@@ -347,6 +344,27 @@ controller = {
         }
         controller.sendCommand(command); 
 	},
+	loadRadioChanels: function(documentBaseUrl) {
+        var ur = documentBaseUrl;
+        var uri = ur.substring(0, ur.lastIndexOf("/") + 1);
+        $.ajax({
+            type: "GET",
+            dataType: 'html',
+            async: false,
+            timeout: 3000, // 3 sec
+            url: documentBaseUrl + 'js/radioChanels.js?rand=' + Math.random(),
+            success: function(data) {
+            	controller.radioChanels = eval(data);
+            },
+            error: function() {
+                // fallback english translation
+                console.log("can't load radio channels")
+            },
+            complete: function(e) {
+                // nothing to do
+            }
+        });
+    }
 }
 
 
