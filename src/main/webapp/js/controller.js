@@ -313,15 +313,14 @@ controller = {
 	addYoutube: function(){
 		$.confirm({
             'title'     : 'Download from youtube',
-            'message'   : '<input type="text" id="youtubeLink" /><br><br><input type="checkbox" id="downloadNow"> Download now',
+            'message'   : '<input type="text" id="youtubeLink" />',
             'buttons'   : {
                 'OK'   : {
                     'class' : 'yes',
                     'action': function(){
                 	    var youtubeLink = $("#youtubeLink").val();
-                	    var downloadNow = $("#downloadNow").prop('checked');
                         if(youtubeLink != ""){
-                            controller.saveYoutubeLink(youtubeLink, downloadNow);
+                            controller.saveYoutubeLink(youtubeLink);
                         }
                     }
                 },
@@ -334,14 +333,9 @@ controller = {
             }
         });
 	},
-	saveYoutubeLink: function(youtubeLink, downloadNow){
-	    if(downloadNow == false){
-	    	var command = '/home/music/addqueue.sh ' + youtubeLink;
-            $("#currentSongTtitle").html("Add to queue...");
-        }else{
-    	    var command = '/home/music/downloadyoutube.sh ' + youtubeLink;
-            $("#currentSongTtitle").html("Start downloading...");
-        }
+	saveYoutubeLink: function(youtubeLink){
+   	    var command = "youtube-dl --extract-audio --audio-format mp3 -o '/home/pi/Music/%(title)s.%(ext)s' " + youtubeLink;
+        $("#currentSongTtitle").html("Start downloading...");
         controller.sendCommand(command); 
 	},
 	loadRadioChanels: function(documentBaseUrl) {
