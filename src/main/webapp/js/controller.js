@@ -334,7 +334,8 @@ controller = {
         });
 	},
 	saveYoutubeLink: function(youtubeLink){
-   	    var command = "youtube-dl --extract-audio --audio-format mp3 -o '/home/pi/Music/youtube/%(title)s.%(ext)s' " + youtubeLink;
+   	    //var command = "youtube-dl --extract-audio --audio-format mp3 -o '/home/pi/Music/youtube/%(title)s.%(ext)s' " + youtubeLink;
+		var command = "/home/pi/yt_downloader.sh " + youtubeLink;
         $("#currentSongTtitle").html("Start downloading...");
         controller.sendCommand(command); 
 	},
