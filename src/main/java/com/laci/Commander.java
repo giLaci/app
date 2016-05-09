@@ -47,12 +47,11 @@ public class Commander {
         	Process proc = Runtime.getRuntime().exec(command);
             java.io.InputStream is = proc.getInputStream();
             java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-            if (s.hasNext()) {
+            while (s.hasNext()) {
             	output += s.next();
             }
-            else {
-            	output += "";
-            }
+            s.close();
+            is.close();
 
         } catch (Exception e) {
             output += "Execution faiulre:" + e.toString();
