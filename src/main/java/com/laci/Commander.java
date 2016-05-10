@@ -88,8 +88,8 @@ public class Commander {
             result = false;
         }
 
-        String response = "{\"result\": " + result + ",\"command\": " + quote(command)
-                + ",\"output\": " + quote(output) + "}";
+        String response = "{\"result\": " + result + ",\"command\": \"" + escape(command)
+        + "\",\"output\": \"" + escape(output) + "\"}";
 
         return response;
     }
@@ -101,57 +101,65 @@ public class Commander {
         return instance;
     }
     
-    public static String quote(String string) {
-        if (string == null || string.length() == 0) {
-            return "\"\"";
-        }
-
-        char         c = 0;
-        int          i;
-        int          len = string.length();
-        StringBuilder sb = new StringBuilder(len + 4);
-        String       t;
-
-        sb.append('"');
-        for (i = 0; i < len; i += 1) {
-            c = string.charAt(i);
-            switch (c) {
-            case '\\':
-            case '"':
-                sb.append('\\');
-                sb.append(c);
-                break;
-            case '/':
-//                if (b == '<') {
-                    sb.append('\\');
-//                }
-                sb.append(c);
-                break;
-            case '\b':
-                sb.append("\\b");
-                break;
-            case '\t':
-                sb.append("\\t");
-                break;
-            case '\n':
-                sb.append("\\n");
-                break;
-            case '\f':
-                sb.append("\\f");
-                break;
-            case '\r':
-               sb.append("\\r");
-               break;
-            default:
-                if (c < ' ') {
-                    t = "000" + Integer.toHexString(c);
-                    sb.append("\\u" + t.substring(t.length() - 4));
-                } else {
-                    sb.append(c);
-                }
-            }
-        }
-        sb.append('"');
+    /**
+	 * Escape quotes, \, /, \r, \n, \b, \f, \t and other control characters (U+0000 through U+001F).
+	 * @param s
+	 * @return
+	 */
+	public static String escape(String s){
+		if(s==null)
+			return null;
+        StringBuffer sb = new StringBuffer();
+        escape(s, sb);
         return sb.toString();
     }
+
+    /**
+     * @param s - Must not be null.
+     * @param sb
+     */
+    static void escape(String s, StringBuffer sb) {
+		for(int i=0;i<s.length();i++){
+			char ch=s.charAt(i);
+			switch(ch){
+			case '"':
+				sb.append("\\\"");
+				break;
+			case '\\':
+				sb.append("\\\\");
+				break;
+			case '\b':
+				sb.append("\\b");
+				break;
+			case '\f':
+				sb.append("\\f");
+				break;
+			case '\n':
+				sb.append("\\n");
+				break;
+			case '\r':
+				sb.append("\\r");
+				break;
+			case '\t':
+				sb.append("\\t");
+				break;
+			case '/':
+				sb.append("\\/");
+				break;
+			default:
+                //Reference: http://www.unicode.org/versions/Unicode5.1.0/
+				if((ch>='\u0000' && ch<='\u001F') || (ch>='\u007F' && ch<='\u009F') || (ch>='\u2000' && ch<='\u20FF')){
+					String ss=Integer.toHexString(ch);
+					sb.append("\\u");
+					for(int k=0;k<4-ss.length();k++){
+						sb.append('0');
+					}
+					sb.append(ss.toUpperCase());
+				}
+				else{
+					sb.append(ch);
+				}
+			}
+		}//for
+	}
 }
