@@ -20,38 +20,30 @@ public class Commander {
         String output = "";
         boolean result = true;
         try {
-//        	// init shell
-//        	ProcessBuilder builder = new ProcessBuilder("/bin/bash");
-//        	Process p = null;
-//            p = builder.start();
-//            BufferedWriter p_stdin = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
-//
-//            p_stdin.write(command);
-//            p_stdin.newLine();
-//            p_stdin.flush();
-//            // downloadyoutube script don't need a final exit command, and don't wait for result
-//            if (command.contains("downloadyoutube.sh")) {
-//                output += "start downloading from youtube";
-//            } else {
-//                p_stdin.write("exit");
-//                p_stdin.newLine();
-//                p_stdin.flush();
-//                // write stdout of shell (=output of all commands)
-//                BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//                String line = null;
-//                while ((line = in.readLine()) != null) {
-//                    output += line + "\n";
-//                    System.out.println(line);
-//                }
-//            }
-        	Process proc = Runtime.getRuntime().exec(command);
-            java.io.InputStream is = proc.getInputStream();
-            java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-            while (s.hasNext()) {
-            	output += s.next();
+        	// init shell
+        	ProcessBuilder builder = new ProcessBuilder("/bin/bash");
+        	Process p = null;
+            p = builder.start();
+            BufferedWriter p_stdin = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
+
+            p_stdin.write(command);
+            p_stdin.newLine();
+            p_stdin.flush();
+            // downloadyoutube script don't need a final exit command, and don't wait for result
+            if (command.contains("downloadyoutube.sh")) {
+                output += "start downloading from youtube";
+            } else {
+                p_stdin.write("exit");
+                p_stdin.newLine();
+                p_stdin.flush();
+                // write stdout of shell (=output of all commands)
+                BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                String line = null;
+                while ((line = in.readLine()) != null) {
+                    output += line + "\n";
+                    System.out.println(line);
+                }
             }
-            s.close();
-            is.close();
 
         } catch (Exception e) {
             output += "Execution faiulre:" + e.toString();
